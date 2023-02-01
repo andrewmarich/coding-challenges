@@ -1,7 +1,4 @@
-function paperwork(n, m) {
-    if (n > 0 && m > 0) {
-      return n * m
-    } else {
-      return 0
-    }
-  }
+// Sum Numbers
+function sum (numbers) {
+  return numbers.reduce((acc, c) => acc + c, 0)
+}
