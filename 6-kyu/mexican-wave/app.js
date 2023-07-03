@@ -18,13 +18,14 @@
     //push
       //join
 
-      function wave(str){
-        let arr = []
-        for (let i = 0; i < str.length; i++) {
-          let split = str.split('')
-          if (split[i] !== ' ') {
-            split[i] = split[i].toUpperCase()
-            arr.push(split.join(''))
-          } 
-        }
-        return arr
+function wave(str){
+  let arr = []
+  for (let i = 0; i < str.length; i++) {
+    let split = str.split('')
+    if (split[i] !== ' ') {
+      split[i] = split[i].toUpperCase()
+      arr.push(split.join(''))
+    } 
+  }
+  return arr
+}
