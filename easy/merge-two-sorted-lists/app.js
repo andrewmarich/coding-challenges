@@ -11,16 +11,29 @@
  * @return {ListNode}
  */
 var mergeTwoLists = function(list1, list2) {
-    //base case
-    if (!list1) return list2;
-    else if (!list2) return list1;
+    let res = new ListNode();
+    let ptr = res;
 
-    //recursion
-    if (list1.val <= list2.val) {
-        list1.next = mergeTwoLists(list1.next, list2);
-        return list1;
-    } else if (list1.val >= list2.val) {
-        list2.next = mergeTwoLists(list1, list2.next);
-        return list2;
+    while(list1 && list2){
+        if (list1.val <= list2.val) {
+            res.next = new ListNode(list1.val);
+            list1 = list1.next;
+        } else {
+            res.next = new ListNode(list2.val);
+            list2 = list2.next;
+        }
+        res = res.next;
     }
+    
+    while (list1) {
+        res.next = new ListNode(list1.val);
+        list1 = list1.next;
+        res = res.next;
+    }
+    while (list2) {
+        res.next = new ListNode(list2.val);
+        list2 = list2.next;
+        res = res.next;
+    }
+    return ptr.next;
 };
