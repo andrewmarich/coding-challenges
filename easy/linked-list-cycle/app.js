@@ -11,15 +11,15 @@
  * @return {boolean}
  */
 var hasCycle = function(head) {
-    let slow = head, fast = head;
+    let pastNodes = new Set();
+    let currentNode = head;
 
-    while (fast && fast.next) {
-        slow = slow.next;
-        fast = fast.next.next;
-
-        if (slow === fast) {
+    while (currentNode) {
+        if (pastNodes.has(currentNode)) {
             return true;
         }
+        pastNodes.add(currentNode);
+        currentNode = currentNode.next;
     }
     return false;
 };
