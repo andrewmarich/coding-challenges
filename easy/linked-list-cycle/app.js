@@ -11,15 +11,13 @@
  * @return {boolean}
  */
 var hasCycle = function(head) {
-    let pastNodes = new Set();
-    let currentNode = head;
+    function tagNode(node) {
+        if (!node) return false;
+        else if (node.tagged) return true;
 
-    while (currentNode) {
-        if (pastNodes.has(currentNode)) {
-            return true;
-        }
-        pastNodes.add(currentNode);
-        currentNode = currentNode.next;
+        node.tagged = true;
+
+        return tagNode(node.next);
     }
-    return false;
+    return tagNode(head);
 };
