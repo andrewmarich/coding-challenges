@@ -11,17 +11,12 @@
  * @return {boolean}
  */
 var isBalanced = function(root) {
-
-    let res = true;
+    if (!root) return true;
 
     function dfs(node) {
         if (!node) return 0;
-        let left = dfs(node.left), right = dfs(node.right);
-        if (Math.abs(left - right) > 1) res = false;
-        return Math.max(left, right) + 1;
+        return 1 + Math.max(dfs(node.left), dfs(node.right));
     }
 
-    dfs(root);
-
-    return res;
+    return Math.abs(dfs(root.left) - dfs(root.right)) < 2 && isBalanced(root.left) && isBalanced(root.right);
 };
