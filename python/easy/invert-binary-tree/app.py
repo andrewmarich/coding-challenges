@@ -17,4 +17,3 @@ class Solution:
         root.right = temp
 
         return root
-        
