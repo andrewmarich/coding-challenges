@@ -3,34 +3,42 @@
  * @return {number[][]}
  */
 var threeSum = function(nums) {
-    let res = [];
+    let res = [], target = 0;
 
-    nums = nums.sort((a, b) => a - b);
+    if (nums.length < 3) return res;
+
+    nums.sort((a, b) => a - b);
 
     for (let i = 0; i < nums.length - 2; i++) {
-        let left = i + 1, right = nums.length - 1, sum = 0;
+        if (nums[i] > target) break;
+
+        if (i > 0 && nums[i] === nums[i - 1]) continue;
+
+        let left = i + 1, right = nums.length - 1;
 
         while (left < right) {
-            sum = nums[i] + nums[left] + nums[right];
+            let sum = nums[i] + nums[left] + nums[right];
 
             if (sum > 0) {
                 right--;
-            } else if (sum < 0) {
-                left++;
-            } else {
-                res.push([nums[i], nums[left], nums[right]]);
-                left++;
-                right++;
-
-                while (nums[left] === nums[left - 1]) {
-                    left++;
-                }
-
-                while (nums[right] === nums[right + 1]) {
-                    right--;
-                }
+                continue;
             }
-            while (nums[i + 1] === nums[i]) i++;
+
+            if (sum < 0) {
+                left++;
+                continue;
+            }
+
+            if (sum === target) {
+                res.push([nums[i], nums[left], nums[right]]);
+
+                while (nums[left] === nums[left + 1]) left++;
+                while (nums[right] === nums[right - 1]) right--;
+
+                left++;
+                right--;
+                continue;
+            }
         }
     }
     return res;
