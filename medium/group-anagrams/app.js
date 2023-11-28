@@ -2,23 +2,19 @@
  * @param {string[]} strs
  * @return {string[][]}
  */
-
 var groupAnagrams = function(strs) {
-    let map = new Map()
+    
+    const map = {}
 
-    for (let str of strs) {
-        let frequency = new Array(26).fill(0)
-        
-        for (let char of str) {
-            let charCode = char.charCodeAt(char) - 'a'.charCodeAt(0)
-            frequency[charCode]++
+    for (const str of strs) {
+
+        const sortedStrs = str.split('').sort().join('')
+
+        if (map[sortedStrs]) {
+            map[sortedStrs].push(str)
+        } else {
+            map[sortedStrs] = [str]
         }
-
-        let hash = frequency.join('-')
-        let group = map.get(hash) || []
-        group.push(str)
-        map.set(hash, group)
     }
-
-    return [...map.values()]
+    return Object.values(map)
 };
