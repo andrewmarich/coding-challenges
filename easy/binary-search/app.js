@@ -1,22 +1,26 @@
 /**
- * @param {number[]} nums
- * @param {number} target
- * @return {number}
+ * @param {character[][]} board
+ * @return {boolean}
  */
-var search = function(nums, target) {
-    let left = 0;
-    let right = nums.length - 1;
+var isValidSudoku = function(board) {
+    const cols = Array.from({ length: 9 }, () => new Set());
+    const rows = Array.from({ length: 9 }, () => new Set());
+    const squares = Array.from({ length: 9 }, () => new Set());
 
-    while (left <= right) {
-        let mid = Math.floor((left + right) / 2);
+    for (let r = 0; r < 9; r++) {
+        for (let c = 0; c < 9; c++) {
+            if (board[r][c] === '.') {
+                continue;
+            }
 
-        if (nums[mid] > target) {
-            right = mid - 1;
-        } else if (nums[mid] < target) {
-            left = mid + 1;
-        } else {
-            return mid;
+            if (rows[r].has(board[r][c]) || cols[c].has(board[r][c]) || squares[Math.floor(r / 3) + Math.floor(c / 3) * 3].has(board[r][c])) {
+                return false;
+            } else {
+                cols[c].add(board[r][c]);
+                rows[r].add(board[r][c]);
+                squares[Math.floor(r / 3) + Math.floor(c / 3) * 3].add(board[r][c]);
+            }
         }
     }
-    return -1;
+    return true;
 };
