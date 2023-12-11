@@ -13,7 +13,20 @@
 var maxDepth = function(root) {
     if (!root) return 0;
 
-    //recursive DFS
+    //BFS (level order)
 
-    return 1 + Math.max(maxDepth(root.left), maxDepth(root.right));
+    let level = 0; queue = [];
+    queue.push(root);
+
+    while (queue.length > 0) {
+        for (let i = 0; i < queue.length; i++) {
+            const node = queue.shift();
+            
+            if (node.right) queue.push(node.right);
+            if (node.left) queue.push(node.left);
+
+        }
+        level++;
+    }
+    return level;
 };
