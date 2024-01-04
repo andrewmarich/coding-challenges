@@ -4,9 +4,8 @@ class Solution:
         longest = 0
 
         for n in nums:
-            # check if start of sequence
+            length = 1
             if (n - 1) not in numSet:
-                length = 0
                 while (n + length) in numSet:
                     length += 1
                 longest = max(length, longest)
