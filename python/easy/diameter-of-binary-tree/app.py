@@ -4,6 +4,8 @@
 #         self.val = val
 #         self.left = left
 #         self.right = right
+
+#DFS
 class Solution:
     def diameterOfBinaryTree(self, root: Optional[TreeNode]) -> int:
         res = [0]
