@@ -5,5 +5,5 @@ class Solution:
         for s in strs:
             sortedStr = "".join(sorted(s))
             res[sortedStr].append(s)
-
+        
         return list(res.values())
