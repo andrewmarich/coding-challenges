@@ -21,5 +21,5 @@ class Solution:
             curr.next = list1
         elif list2:
             curr.next = list2
-        
+
         return dummy.next
