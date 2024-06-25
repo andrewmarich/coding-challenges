@@ -12,5 +12,5 @@ class Solution:
                 r -= 1
             else:
                 return False
-        
+
         return True
