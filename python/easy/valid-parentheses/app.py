@@ -1,7 +1,6 @@
 class Solution:
     def isValid(self, s: str) -> bool:
         stack = []
-        # map closing parentheses to opening parentheses
         closeToOpen = {')' : '(', '}' : '{', ']' : '['}
 
         for c in s:
@@ -14,3 +13,4 @@ class Solution:
                 stack.append(c)
 
         return True if not stack else False
+                
