@@ -10,5 +10,5 @@ class Solution:
             else:
                 l = r
             r += 1
-            
+        
         return maxP
